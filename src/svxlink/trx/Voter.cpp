@@ -669,10 +669,11 @@ void Voter::satSquelchOpen(bool is_open, SatRx *srx)
 
 void Voter::satSignalLevelUpdated(float siglev, SatRx *srx)
 {
-  if (srx->isEnabled())
-  {
+  // https://github.com/sm0svx/svxlink/issues/608
+  //if (srx->isEnabled())
+  //{
     dispatchEvent(Macho::Event(&Top::satSignalLevelUpdated, srx, siglev));
-  }
+  //}
 } /* Voter::satSignalLevelUpdated */
 
 
