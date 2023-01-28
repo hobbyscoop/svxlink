@@ -1424,6 +1424,9 @@ void Voter::setRxEnabled(const std::string &rx_name, bool do_enable,
              << " receiver " << (*it)->name() << endl;
         (*it)->setEnabled(do_enable, disabled_mute_state);
       }
+      // https://github.com/sm0svx/svxlink/issues/609
+      // send update to voter PTY    
+      printSquelchState();
       return;
     }
   }
