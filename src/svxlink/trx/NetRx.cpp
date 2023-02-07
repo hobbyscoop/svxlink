@@ -250,6 +250,9 @@ void NetRx::setMuteState(Rx::MuteState new_mute_state)
           {
             audio_dec->flushEncodedSamples();
           }
+          // WIM close sql on mute
+          sql_is_open = false;
+          setSquelchState(false, "MUTED");
           break;
 
         case MUTE_ALL:  // MUTE_CONTENT -> MUTE_ALL
