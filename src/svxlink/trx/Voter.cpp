@@ -670,10 +670,11 @@ void Voter::satSquelchOpen(bool is_open, SatRx *srx)
 void Voter::satSignalLevelUpdated(float siglev, SatRx *srx)
 {
   // https://github.com/sm0svx/svxlink/issues/608
-  //if (srx->isEnabled())
-  //{
+  // removing the if here, causes an assert to fail below
+  if (srx->isEnabled())
+  {
     dispatchEvent(Macho::Event(&Top::satSignalLevelUpdated, srx, siglev));
-  //}
+  }
 } /* Voter::satSignalLevelUpdated */
 
 
