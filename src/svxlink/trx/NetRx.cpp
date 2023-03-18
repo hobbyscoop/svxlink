@@ -250,6 +250,8 @@ void NetRx::setMuteState(Rx::MuteState new_mute_state)
           {
             audio_dec->flushEncodedSamples();
           }
+          // makes sure we're deselected if active
+          sql_is_open = false;
           break;
 
         case MUTE_ALL:  // MUTE_CONTENT -> MUTE_ALL
