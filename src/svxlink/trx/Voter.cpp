@@ -669,6 +669,8 @@ void Voter::satSquelchOpen(bool is_open, SatRx *srx)
 
 void Voter::satSignalLevelUpdated(float siglev, SatRx *srx)
 {
+  // https://github.com/sm0svx/svxlink/issues/608
+  // removing the if here, causes an assert to fail below
   if (srx->isEnabled())
   {
     dispatchEvent(Macho::Event(&Top::satSignalLevelUpdated, srx, siglev));
@@ -722,12 +724,13 @@ void Voter::printSquelchState(void)
     char rx_id = srx->id();
     rx["id"] = std::string(&rx_id, &rx_id+1);
     rx["enabled"] = is_enabled;
-    if (is_enabled)
-    {
+    // https://github.com/sm0svx/svxlink/issues/608
+    // if (is_enabled)
+    // {
       rx["sql_open"] = sql_is_open;
       rx["active"] = is_active;
       rx["siglev"] = static_cast<int>(siglev);
-    }
+    // }
     event.append(rx);
   }
   Json::StreamWriterBuilder builder;
