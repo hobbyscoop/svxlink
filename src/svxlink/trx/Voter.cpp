@@ -1424,6 +1424,8 @@ void Voter::setRxEnabled(const std::string &rx_name, bool do_enable,
              << " receiver " << (*it)->name() << endl;
         (*it)->setEnabled(do_enable, disabled_mute_state);
       }
+      // send a new update, so event listeners know this receiver's state was changed
+      printSquelchState();
       return;
     }
   }
