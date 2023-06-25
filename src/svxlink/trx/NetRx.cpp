@@ -246,6 +246,8 @@ void NetRx::setMuteState(Rx::MuteState new_mute_state)
       switch (mute_state)
       {
         case MUTE_CONTENT:  // MUTE_NONE -> MUTE_CONTENT
+          // force close the squelch, so this rx is demoted if it was selected
+          sql_is_open = false;
           if (unflushed_samples)
           {
             audio_dec->flushEncodedSamples();
