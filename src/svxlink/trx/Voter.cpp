@@ -1402,6 +1402,9 @@ void Voter::setRxEnabled(const std::string &rx_name,
         }
         publishSquelchState();
       }
+      // https://github.com/sm0svx/svxlink/issues/609
+      // send update to voter PTY    
+      printSquelchState();
       return;
     }
   }
